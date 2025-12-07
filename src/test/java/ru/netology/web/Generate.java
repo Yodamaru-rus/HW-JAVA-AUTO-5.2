@@ -20,6 +20,7 @@ public class Generate {
             .log(LogDetail.ALL)
             .build();
     private static final Faker faker = new Faker(new Locale("en"));
+
     private Generate() {
     }
 
@@ -30,9 +31,9 @@ public class Generate {
         given() // "дано"
                 .spec(requestSpec) // указываем, какую спецификацию используем
                 .body(new RegistrationDto(user.login, user.password, user.status)) // передаём в теле объект, который будет преобразован в JSON
-        .when() // "когда"
+                .when() // "когда"
                 .post("/api/system/users") // на какой путь относительно BaseUri отправляем запрос
-        .then() // "тогда ожидаем"
+                .then() // "тогда ожидаем"
                 .statusCode(200); // код 200 OK
     }
 
@@ -46,14 +47,7 @@ public class Generate {
     public static String getRandomPassword() {
         // TODO: добавить логику для объявления переменной password и задания её значения, для генерации
         //  случайного пароля используйте faker
-        String password;
-
-        try {
-            password = faker.internet().password();
-        } catch (Exception e) {
-            // Fallback: генерируем пароль вручную
-            password = faker.lorem().characters(8, 12, true, true);
-        }
+        String password = faker.internet().password();
         return password;
     }
 
@@ -80,7 +74,7 @@ public class Generate {
     }
 
     @Value
-    public static class RegistrationDto{
+    public static class RegistrationDto {
         String login;
         String password;
         String status;

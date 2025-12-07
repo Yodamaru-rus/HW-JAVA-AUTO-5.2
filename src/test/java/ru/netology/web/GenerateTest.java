@@ -30,7 +30,7 @@ public class GenerateTest {
         $("[data-test-id='password'] input").setValue(registeredUser.getPassword());
         $$("button").find(text("Продолжить")).click();
         webdriver().shouldHave(url("http://localhost:9999/dashboard"));
-        $("[id=root] h2").should(Condition.text("Личный кабинет")).should(Condition.visible);
+        $("h2").should(Condition.text("Личный кабинет")).should(Condition.visible);
 
     }
 
